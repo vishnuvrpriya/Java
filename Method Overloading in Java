@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+import javax.print.DocFlavor.INPUT_STREAM;
+
+public class Method_Overloading {
+	
+	int sum = 0;
+	float sumfloat = 0f;
+	float numfloat;
+	
+	
+	Scanner s = new Scanner(System.in);
+	
+	void add(int...args) {
+		
+		for(int i : args ) {
+			
+			sum= sum+i;
+		}
+		
+		System.out.println("Sum of int numbers:" +sum);
+	}
+	
+	void add(float...args) {
+		
+		for(float j : args ) {
+			
+			sumfloat= sumfloat+j;
+	}
+		System.out.println("Sum of float numbers:" +sumfloat);
+}
+	
+public static void main(String[] args) {
+	
+	Method_Overloading m = new Method_Overloading();
+	m.add(2,3,5,6);
+	m.add(4f,4f,2.5f);
+	
+	}
+}
+	
