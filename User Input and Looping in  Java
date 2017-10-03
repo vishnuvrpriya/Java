@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Student
+{
+public static void main(String[]args)
+{
+int i;
+int j;
+Scanner s = new Scanner(System.in);
+String[] names = new String[10];
+System.out.println("Enter the ten names:");
+for(i=0;i < names.length;i++)
+{
+names[i] = s.nextLine();
+}
+Scanner inp = new Scanner(System.in);
+int[] ages = new int[10];
+System.out.println("Enter the ages of the students:");
+for(j=0;j < ages.length;j++)
+{
+ages[j] = inp.nextInt();
+}
+
+for(j=0;j < ages.length;j++){
+	int newAges = ages[j]+3;
+		if(newAges >= 18)
+			{
+				System.out.println("The student"+ " " +names[j]+" "+ "is eligible to vote");
+			}
+	}
+}
+}
+
+
+
+
