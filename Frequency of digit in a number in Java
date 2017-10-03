@@ -1,0 +1,25 @@
+class Occurance
+{
+int n,i,j,rem;
+int check(int num,int che)
+{
+int occ=0,quo=num;
+while(quo>0)
+{
+rem=quo%10;
+quo=quo/10;
+if(che==rem)
+{
+occ++;
+}
+}
+return occ;
+}
+}
+class Occur{
+public static void main(String args[]){
+Occurance oc=new Occurance();
+int result=oc.check(50005,5);
+System.out.println("The required digit occured "+result+" times.");
+}
+}
