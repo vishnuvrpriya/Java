@@ -1,0 +1,84 @@
+import java.lang.Exception;
+import java.util.ArrayList;
+
+
+public class MarkException extends Exception {
+	
+	public MarkException(String s) {
+		
+		System.out.println(s + " " + "Please change it.");
+	}
+
+	public static void main(String[] args) {
+		int totalmath = 0;
+		int totaleng = 0;
+		int total;
+		
+		ArrayList<String> names = new ArrayList<String>();
+		names.add("Sam");
+		names.add("Ram");
+		names.add("Sunder");
+		names.add("Reva");
+		names.add("Ranga");
+		
+		System.out.println("Student names:");
+		
+		for(int i=0;i<names.size();i++) {
+			
+			System.out.println(names.get(i));
+		}
+
+	ArrayList<Integer> mathmarks = new ArrayList<Integer>();
+		mathmarks.add(50);
+		mathmarks.add(75);
+		mathmarks.add(80);
+		mathmarks.add(75);
+		mathmarks.add(101);
+	
+System.out.println("Student  math marks:");
+		
+		for(int j=0;j<mathmarks.size();j++) {
+			
+			System.out.println(mathmarks.get(j));
+			totalmath = totalmath+mathmarks.get(j);
+		}
+			
+			ArrayList<Integer> engmarks = new ArrayList<Integer>();
+			engmarks.add(50);
+			engmarks.add(75);
+			engmarks.add(80);
+			engmarks.add(75);
+			engmarks.add(101);
+		
+	System.out.println("Student  english marks:");
+			
+			for(int k=0;k<engmarks.size();k++) {
+				
+				System.out.println(engmarks.get(k));
+				totaleng = totaleng+engmarks.get(k);
+				
+			}
+			try {
+				
+				 total = totalmath + totaleng;
+				 
+				 while((total<=0) || (total>=200)) {
+					 
+					 throw new MarkException("INVALID INPUT ERROR");
+					 
+				 }
+			}
+		
+			
+				 catch(MarkException e) {
+					 
+					 System.out.println(e.getMessage());
+					 
+						 
+			 }
+	
+	}
+}
+	
+		
+	
