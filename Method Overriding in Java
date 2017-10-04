@@ -1,0 +1,91 @@
+import java.util.Scanner;
+public class Method_Overriding {
+
+	String empname;
+	int empage;
+	int workhrs;
+	double empsal;
+	double empwage;
+	
+	void accept() {
+		
+		Scanner emp = new Scanner(System.in);
+		
+		System.out.println("Enter the employee name: ");
+		empname = emp.nextLine();
+		
+		System.out.println("Enter the employee age: ");
+		empage = emp.nextInt();
+		
+	}
+	
+	
+	void display() {
+		
+		System.out.println("The employee name is :" +empname);
+		System.out.println("The employee age is :" +empage);
+		
+		}
+	
+public static class FTEmp extends Method_Overriding {
+	
+	void accept() {
+
+		Scanner empl = new Scanner(System.in);
+		
+		System.out.println("Enter the working hrs: ");
+		workhrs = empl.nextInt();
+	
+			
+		System.out.println("Enter the employee salary: ");
+		empsal = empl.nextDouble();
+}
+	
+	void display() {
+		
+		System.out.println("The employee working hrs is :" +workhrs);
+		System.out.println("The employee salary is :" +empsal);
+		
+		}
+}
+
+public static class PTEmp extends Method_Overriding {
+
+	
+	void accept() {
+
+		Scanner emply = new Scanner(System.in);
+		
+		System.out.println("Enter the working hrs: ");
+		workhrs = emply.nextInt();
+	
+			
+		System.out.println("Enter the employee wages: ");
+		empwage = emply.nextDouble();
+}
+	
+	void display() {
+		
+		System.out.println("The employee working hrs is :" +workhrs);
+		System.out.println("The employee wages is :" +empwage);
+		
+			}
+}
+
+public static void main(String[] args) {
+	
+	Method_Overriding empdet = new Method_Overriding();
+	empdet.accept();
+	empdet.display();
+	PTEmp emp2 = new PTEmp();
+	emp2.accept();
+	emp2.display();
+	
+	}
+	
+}
+
+
+
+	
+
