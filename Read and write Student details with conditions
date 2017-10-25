@@ -1,0 +1,127 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.lang.Exception;
+import java.io.*;
+
+
+
+public class Student implements Serializable
+{
+
+	Scanner sc=new Scanner(System.in);
+    String StudentID,StudentName,StudentCity,StudentCountry;
+    int StudentAge;
+    ArrayList Student=new ArrayList();
+    
+    public void acceptDetails()
+    {
+    for(int i=0;i<10;i++)
+    {
+   	 	System.out.println("Enter the student ID");
+   	 	StudentID=sc.nextLine();
+   	 	
+   	 	if(StudentID.startsWith("S")&& StudentID.length == 4))
+        Student.add(StudentID);
+   	 	else System.out.println("Please make sure the student ID starts with S");
+        
+        
+        System.out.println("Enter the student Name");
+        StudentName=sc.nextLine();
+        Student.add(StudentName);
+        
+        
+        System.out.println("Enter the student City");
+        StudentCity=sc.nextLine();
+        Student.add(StudentCity);
+        
+        
+        System.out.println("Enter the student Country");
+        StudentCountry=sc.nextLine();
+        
+        if(StudentID.equals("India"))
+        Student.add(StudentCountry);
+       	else System.out.println("Please make sure the student Country is India");
+        
+        
+        System.out.println("Enter the student Age");
+        StudentAge=sc.nextInt();
+        
+        if(StudentAge<=100)
+        Student.add(StudentAge);
+       	else System.out.println("Please make sure the student Age is less than 100");
+        
+    }
+}
+
+public void writetoFile()
+{
+
+		try
+		{
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\Vishnupriya\\t.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Student);
+			oos.writeObject(" ");
+			oos.close();
+		}
+
+ catch(FileNotFoundException e)
+ {
+	 	System.out.println("File Not Found");
+	 	e.printStackTrace();
+ 	}
+ 
+ catch(IOException e)
+ {
+	 System.out.println("IO Error");
+	 
+ 	}
+ }
+
+public void readfromFile()
+{
+	try
+	{
+	FileInputStream fis = new FileInputStream("C:\\Users\\Vishnupriya\\t.tmp");
+	ObjectInputStream ois = new ObjectInputStream(fis);
+	Student= (ArrayList<Student>)ois.readObject();
+	ois.close();
+	}
+	
+	 catch(FileNotFoundException e)
+	 {
+		 	System.out.println("File Not Found");
+		 	e.printStackTrace();
+	 	}
+	catch(Exception e)
+	 {
+		 	System.out.println("Exception Occured");
+		 	e.printStackTrace();
+	 	}
+	
+	if(StudentAge>21)
+	{
+		int agecount =0;
+		agecount+=1;
+		System.out.println("No.of students with age more than 21 is:" +agecount);
+	}
+	
+	if(StudentName.startsWith("A"))
+	{
+		int charcount =0;
+		charcount+=1;
+		System.out.println("No.of students with name starting with A is:" +charcount);
+	}
+	
+	
+}
+ public static void main(String []args)
+ {
+     
+     Student s1= new Student();
+     s1.acceptDetails();
+     s1.writetoFile();
+     s1.readfromFile();    
+ }
+}
+
