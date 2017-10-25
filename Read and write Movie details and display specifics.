@@ -1,0 +1,131 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.lang.Exception;
+import java.io.*;
+
+public class Movie implements Serializable
+{
+
+	Scanner sc=new Scanner(System.in);
+    String MovieType,MovieName,MovieDirector,MovieActor,MovieReleaseDate;
+    int  MovieID,MovieRating;
+    ArrayList Movie =new ArrayList();
+    
+    public void acceptDetails()
+    {
+    for(int i=0;i<50;i++)
+    {
+   	 	System.out.println("Enter the movie Name");
+   	 	MovieName=sc.nextLine();
+   	 	Movie.add(MovieName);
+   	 	
+        
+        System.out.println("Enter the Movie Director");
+        MovieDirector=sc.nextLine();
+        Movie.add(MovieDirector);
+        
+        
+        System.out.println("Enter the movie Actor");
+        MovieActor=sc.nextLine();
+        Movie.add(MovieActor);
+        
+        
+        System.out.println("Enter the movie Release Date");
+        MovieReleaseDate=sc.nextLine();
+        Movie.add(MovieReleaseDate);
+        
+        System.out.println("Enter the movie ID");
+        MovieID=sc.nextInt();
+        Movie.add(MovieID);
+        
+        System.out.println("Enter the movie Rating");
+        MovieRating=sc.nextInt();
+        Movie.add(MovieRating);
+       	
+        
+    }
+}
+
+public void writetoFile()
+{
+
+		try
+		{
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\Vishnupriya\\movie.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Movie);
+			oos.writeObject(" ");
+			oos.close();
+		}
+
+ catch(FileNotFoundException e)
+ {
+	 	System.out.println("File Not Found");
+	 	e.printStackTrace();
+ 	}
+ 
+ catch(IOException e)
+ {
+	 System.out.println("IO Error");
+	 
+ 	}
+ }
+
+public void readfromFile()
+{
+	try
+	{
+	FileInputStream fis = new FileInputStream("C:\\Users\\Vishnupriya\\movie.tmp");
+	ObjectInputStream ois = new ObjectInputStream(fis);
+	Movie= (ArrayList<Movie>)ois.readObject();
+	ois.close();
+	}
+	
+	 catch(FileNotFoundException e)
+	 {
+		 	System.out.println("File Not Found");
+		 	e.printStackTrace();
+	 	}
+	catch(Exception e)
+	 {
+		 	System.out.println("Exception Occured");
+		 	e.printStackTrace();
+	 	}
+	
+	if(MovieReleaseDate.contains("2015"))
+	{
+		for(int i=0;i<Movie.size(); i++)
+			System.out.println("Movies released in 2015:" +MovieName);
+	}
+	
+	if(MovieType.equals("U"))
+	{
+		for(int i=0;i<Movie.size(); i++)
+			System.out.println("Movies of type U:" +MovieName);	
+	}
+	
+	if(MovieRating == 4)
+	{
+		for(int i=0;i<Movie.size(); i++)
+			System.out.println("Movies having rating 4:" +MovieName);	
+	}
+	
+	if(MovieActor.contains("Khans"))
+	{
+		for(int i=0;i<Movie.size(); i++)
+			System.out.println("Movies having Khans:" +MovieName);	
+	}
+	
+}
+ public static void main(String []args)
+ {
+     
+     Movie m1= new Movie();
+     m1.acceptDetails();
+     m1.writetoFile();
+     m1.readfromFile();    
+ }
+}
+ 
+
+
