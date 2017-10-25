@@ -1,0 +1,143 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.lang.Exception;
+import java.io.*;
+
+public class CustomerBio implements Serializable
+{
+
+	Scanner sc=new Scanner(System.in);
+    String  CustomerName,CustomerAddress,CustomerCity,DateOfBirth;
+    char CustomerGender;
+    int CustomerID,CustomerAge,Pin,Phone;
+    ArrayList CustomerBio =new ArrayList();
+    
+    public void acceptDetails()
+    {
+    for(int i=0;i<50;i++)
+    {
+   	 	System.out.println("Enter the customer ID");
+   	 	CustomerID=sc.nextInt();
+   	 	CustomerBio.add(CustomerID);
+   	 	
+   	 	System.out.println("Enter the customer Name");
+   	 	CustomerName=sc.nextLine();
+   	 	CustomerBio.add(CustomerName);
+   	 	
+   	 	System.out.println("Enter the customer Age");
+   	 	CustomerAge=sc.nextInt();
+   	 	CustomerBio.add(CustomerAge));
+   	 	
+   	 	System.out.println("Enter the customer Address");
+   	 	CustomerAddress=sc.nextLine();
+   	 	CustomerBio.add(CustomerAddress);
+   	 	
+   	 	System.out.println("Enter the customer City");
+   	 	CustomerCity=sc.nextLine();
+   	 	CustomerBio.add(CustomerCity);
+   	 	
+   	 	System.out.println("Enter the Pin");
+   	 	Pin=sc.nextInt();
+   	 	CustomerBio.add(Pin);
+   	 	
+   	 	System.out.println("Enter the Phone No.");
+	 	Pin=sc.nextInt();
+	 	CustomerBio.add(Phone);
+   	 
+   	 	System.out.println("Enter the DOB");
+        DateOfBirth=sc.nextLine();
+        CustomerBio.add(DateOfBirth);
+        
+    }
+}
+
+public void writetoFile()
+{
+
+		try
+		{
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\Vishnupriya\\trans.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(CustomerBio);
+			oos.writeObject(" ");
+			oos.close();
+		}
+
+ catch(FileNotFoundException e)
+ {
+	 	System.out.println("File Not Found");
+	 	e.printStackTrace();
+ 	}
+ 
+ catch(IOException e)
+ {
+	 System.out.println("IO Error");
+	 
+ 	}
+ }
+
+public void readfromFile()
+{
+	try
+	{
+	FileInputStream fis = new FileInputStream("C:\\Users\\Vishnupriya\\trans.tmp");
+	ObjectInputStream ois = new ObjectInputStream(fis);
+	CustomerBio= (ArrayList<CustomerBio>)ois.readObject();
+	ois.close();
+	}
+	
+	 catch(FileNotFoundException e)
+	 {
+		 	System.out.println("File Not Found");
+		 	e.printStackTrace();
+	 	}
+	catch(Exception e)
+	 {
+		 	System.out.println("Exception Occured");
+		 	e.printStackTrace();
+	 	}
+	
+	
+	
+		for(int i=0;i<Transaction.size(); i++)
+		{
+			if(CustomerGender=='F')&&(CustomerGender=='M')
+			{
+			int sum=0;
+			sum+=1;
+			System.out.println("The  total male and female customer is" +sum);
+			}
+			
+			if(CustomerAge>18)
+			{
+				int countage=0;
+				countage+=1;
+				System.out.println("Customers with age greater than 18:" +countage);
+				}
+			
+			if(Phone="NA")
+			
+			{
+				int countph=0;
+				countph+=1;
+				System.out.println("Customers with no phone number:" +countph);
+			}
+		}
+}
+		
+ public static void main(String args[])
+ 
+ {
+     
+     CustomerBio b1= new CustomerBio();
+     b1.acceptDetails();
+     b1.writetoFile();
+     b1.readfromFile();    
+ }
+}
+ 
+
+
+
+
+
