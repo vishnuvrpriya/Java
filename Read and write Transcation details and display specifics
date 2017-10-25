@@ -1,0 +1,133 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.lang.Exception;
+import java.io.*;
+
+public class Transaction implements Serializable
+	{
+
+		Scanner sc=new Scanner(System.in);
+	    String ProductType,DateOfPurchase;
+	    int CustomerID,ProductID,ProductPrice,Quantity,TotalPrice,DiscountPercentage;
+	    ArrayList Transaction =new ArrayList();
+	    
+	    public void acceptDetails()
+	    {
+	    for(int i=0;i<50;i++)
+	    {
+	   	 	System.out.println("Enter the customer ID");
+	   	 	CustomerID=sc.nextInt();
+	   	 	Transaction.add(CustomerID);
+	   	 	
+	   	 	System.out.println("Enter the product ID");
+	   	 	ProductID=sc.nextInt();
+	   	 	Transaction.add(ProductID);
+	   	 	
+	   	 	System.out.println("Enter the product Price");
+	   	 	ProductPrice=sc.nextInt();
+	   	 	Transaction.add(ProductPrice);
+	   	 	
+	   	 	System.out.println("Enter the quantity");
+	   	 	Quantity=sc.nextInt();
+	   	 	Transaction.add(CustomerID);
+	   	 	
+	   	 	System.out.println("Enter the total price");
+	   	 	TotalPrice=sc.nextInt();
+	   	 	Transaction.add(CustomerID);
+	   	 	
+	   	 	System.out.println("Enter the discount percentage");
+	   	 	DiscountPercentage=sc.nextInt();
+	   	 	Transaction.add(CustomerID);
+	   	 
+	   	 	System.out.println("Enter the product type");
+	        ProductType=sc.nextLine();
+	        Transaction.add(ProductType);
+	        
+	        System.out.println("Enter the date of purchase");
+	        DateOfPurchase=sc.nextLine();
+	        Transaction.add(DateOfPurchase);
+	            
+	    }
+	}
+
+	public void writetoFile()
+	{
+
+			try
+			{
+				FileOutputStream fos = new FileOutputStream("C:\\Users\\Vishnupriya\\trans.txt");
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(Transaction);
+				oos.writeObject(" ");
+				oos.close();
+			}
+
+	 catch(FileNotFoundException e)
+	 {
+		 	System.out.println("File Not Found");
+		 	e.printStackTrace();
+	 	}
+	 
+	 catch(IOException e)
+	 {
+		 System.out.println("IO Error");
+		 
+	 	}
+	 }
+
+	public void readfromFile()
+	{
+		try
+		{
+		FileInputStream fis = new FileInputStream("C:\\Users\\Vishnupriya\\trans.tmp");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		Transaction= (ArrayList<Transaction>)ois.readObject();
+		ois.close();
+		}
+		
+		 catch(FileNotFoundException e)
+		 {
+			 	System.out.println("File Not Found");
+			 	e.printStackTrace();
+		 	}
+		catch(Exception e)
+		 {
+			 	System.out.println("Exception Occured");
+			 	e.printStackTrace();
+		 	}
+		
+		
+		
+			for(int i=0;i<Transaction.size(); i++)
+			{
+				int sum=0;
+				sum=sum+Quantity;
+				System.out.println("Total purchase made by customer:" +Quantity);
+				
+				int max =0; 
+			    if(max < Quantity)     
+			    max = Quantity;	
+			    System.out.println("Highest purchase made by customer:" +Quantity);
+		}
+		
+		if(DiscountPercentage>0.25)
+		{
+			for(int i=0;i<Transaction.size(); i++)
+				System.out.println("Transcations with discount more than 25%:" +DiscountPercentage);	
+		}
+		
+	}
+	 public static void main(String []args)
+	 {
+	     
+	     Transaction t1= new Transaction();
+	     t1.acceptDetails();
+	     t1.writetoFile();
+	     t1.readfromFile();    
+	 }
+	}
+	 
+
+
+
+
